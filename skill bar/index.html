@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+    <title>Document</title>
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-color: #201D20;
+        }
+        #container{
+            margin-top: 150px;
+            margin-left: 300px;
+            background-color: #201D20;
+            width: 700px;
+            height: 350px;
+        }
+        .inskill{
+            width: 650px;
+            height: 7px;
+            background-color: whitesmoke;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            border-top-left-radius: 7px;
+            border-bottom-left-radius: 7px;
+        }
+
+        .skill{
+            margin-top: 30px;
+            margin-left:25px;
+            width: 650px;
+            height: 7px;
+            background-color: whitesmoke;
+            border: 2px solid gray;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            -webkit-box-shadow: 10px 10px 19px 2px rgba(255, 255, 255, 0.75);
+            -moz-box-shadow: 10px 10px 19px 2px rgba(255, 255, 255, 0.75);
+            box-shadow: 10px 10px 19px 2px rgba(255, 255, 255, 0.75);
+        }
+
+        #html{
+            background-color: rgb(0, 60, 255);
+            width: 1%;
+        }#css{
+            background-color: rgb(230, 8, 8);
+            width: 1%;
+        }#python{
+            background-color: rgb(13, 219, 30);
+            width: 1%;
+        }#javascript{
+            background-color: blueviolet;
+            width: 1%;
+        }#sql{
+            background-color: aqua;
+            width: 1%;
+        }H1{
+            font-family: 'Anton', sans-serif;
+            color: white;
+            text-align: center;
+            text-decoration: underline;
+        }p{
+            margin-left:10px;
+            font-family: 'Anton', sans-serif;
+            color: rgb(255, 255, 255);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <h1>SKİL BAR</h1>
+        <div class="skill">
+            <div id="html" class="inskill">
+            </div>
+            <p id="html-yuzde">HTML  %75</p>
+        </div>
+        <div class="skill">
+            <div id="css" class="inskill">
+            </div>
+            <p id="css-yuzde">CSS 55%</p>
+        </div>
+        <div class="skill">
+            <div id="python" class="inskill">
+            </div>
+            <p id="python-yuzde">PYTHON 65%</p>
+
+        </div>
+        <div class="skill">
+            <div id="javascript" class="inskill">
+            </div>
+            <p id="javascript-yuzde">JAVASCRİPT 85%</p>
+        </div>
+        <div class="skill">
+            <div id="sql" class="inskill">
+            </div>
+            <p id="sql-yuzde">SQL 45%</p>
+        </div>
+    </div>
+    
+    <script>
+        
+        const container = document.getElementById("container");
+        const html = document.getElementById("html");
+        const css = document.getElementById("css");
+        const python = document.getElementById("python");
+        const javascript = document.getElementById("javascript");
+        const sql = document.getElementById("sql");
+        
+        container.addEventListener("mouseover",run);
+
+        function run(){
+            html.style.transitionProperty="width"
+            html.style.transitionDuration="3s"
+            css.style.transitionProperty="width"
+            css.style.transitionDuration="3s"
+            python.style.transitionProperty="width"
+            python.style.transitionDuration="3s"
+            javascript.style.transitionProperty="width"
+            javascript.style.transitionDuration="3s"
+            sql.style.transitionProperty="width"
+            sql.style.transitionDuration="3s"
+            html.style.width = "75%";
+            css.style.width = "55%";
+            python.style.width = "65%";
+            javascript.style.width = "85%";
+            sql.style.width = "45%";
+        }
+
+    </script>
+</body>
+</html>
