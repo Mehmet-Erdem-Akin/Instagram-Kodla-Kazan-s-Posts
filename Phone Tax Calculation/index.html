@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telefon Fiyatı Hesaplama</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: 'Comfortaa', cursive;
+        }
+        body{
+            background-color: rgb(43, 0, 83);
+        }
+        h1{
+        text-align: center;        
+        }
+        #kapsayici{
+            margin-left: 85px;
+            width: 86%;
+            height: 800px;
+            color: white; 
+            /*text-align: center;*/
+        }
+        #veriler{
+            float: left;
+            border: 3px solid gray;
+            margin-left: 30px;
+            width: 500px;
+            height: 600px;
+            background-color: rgb(79, 8, 145);
+            -webkit-box-shadow: 10px 10px 16px -6px rgb(131, 131, 131,0.74);
+            -moz-box-shadow: 10px 10px 16px -6px rgb(131, 131, 131,0.74);
+            box-shadow: 10px 10px 16px -6px rgb(131, 131, 131,0.74);
+        }
+        input{
+            text-align: center;
+            margin-top: 2px;
+        }
+        #sonuclar{
+            float: left;
+            border: 3px solid gray;
+            margin-left: 30px;
+            width: 500px;
+            height: 600px;
+            background-color: rgb(79, 8, 145);
+            -webkit-box-shadow: 10px 10px 16px -6px rgb(131, 131, 131,0.74);
+            -moz-box-shadow: 10px 10px 16px -6px rgb(131, 131, 131,0.74);
+            box-shadow: 10px 10px 16px -6px rgb(131, 131, 131,0.74);
+        }
+        p{
+            font-size: 20px;
+            text-align: center;
+        }
+        .paragraf1{
+            margin-left: 25px;
+            height: 25PX;
+            width: 445PX;
+            background-color: rgb(248, 177, 46);
+            border: 2px solid black;
+        }
+        .paragraf2{
+            margin-left: 50px;
+            height: 25PX;
+            width: 400PX;
+            background-color: rgb(177, 6, 162);
+            border: 2px solid black;
+        }
+        #butonlar{
+            margin-left: 515px;
+        }
+        button{ 
+           /* margin-top: 50px;*/
+            margin-left: 2px;
+            border: 2px solid gray;
+            background-color: rgb(79, 8, 145);
+            color: white;
+            width: 120px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="kapsayici"><br><br><H1>TELEFON VERGİ HESAPLAMA</H1><br><br><br>
+        <div id="veriler"><br><h3>VERİLER</h3><br><br>
+            <form id="veriform">
+                <p class="paragraf1">Dolar Kuru:</p><p class="paragraf2"><input id="dolarkuru" type="number" value="" step="0.1"></p>
+                <br><p class="paragraf1">Hesaplama Türü:</p><p class="paragraf2"> <select id="hesaplamaturu">
+                                    <option selected>İthalat Kayıtlı</option>
+                                    <!--<option >Pasaport Kayıtlı</option>-->
+                                </select></p>
+                <br><p class="paragraf1">Telefon Fiyatı (dolar):</p><p class="paragraf2"> <input id="telefonfiyati" type="number" step="0.1" value=""></p>
+                <br>                        
+            </form>
+        </div>
+        <div id="sonuclar"><br><h3>SONUÇLAR</h3><br><br>
+            <p class="paragraf1">Vergisiz Fiyat (₺):</p><p class="paragraf2"type="number" id="vergisizfiyat" ></p><br>
+            <p class="paragraf1">Kültür Bakanlığı Payı (%1):</p><p class="paragraf2" id="kulturbakanlıgıpayi"></p><br>
+            <p class="paragraf1">TRT Bandrol Ücreti (%10):</p><p class="paragraf2" id="trtbandrolucreti"></p><br>
+            <p class="paragraf1">ÖTV Payı (%40):</p><p class="paragraf2" id="otvpayi"></p><br>
+            <p class="paragraf1">KDV Payı (%18):</p><p class="paragraf2" id="kdvpayi"></p><br>
+            <p class="paragraf1">Toplam Vergi:</p><p class="paragraf2" id="toplamvergi"></p><br>
+            <p class="paragraf1">Satış Fiyatı:</p><p class="paragraf2" id="satisfiyati"></p>
+        </div><br>
+    </div>
+    <div id="butonlar">
+        <button id="temizle" type="reset" onclick="ekranitemizle()">Temizle</button>
+        <button id="hesapla" onclick="vergihesapla()">Hesapla</button>     
+    </div>      
+
+    <script>
+        var Vvergisizfiyat = document.getElementById("vergisizfiyat");
+        var Vkulturbakanlıgıpayi = document.getElementById("kulturbakanlıgıpayi");
+        var Vtrtbandrolucreti = document.getElementById("trtbandrolucreti");
+        var Votvpayi = document.getElementById("otvpayi");
+        var Vkdvpayi = document.getElementById("kdvpayi");
+        var Vtoplamvergi = document.getElementById("toplamvergi");
+        var Vsatisfiyati = document.getElementById("satisfiyati");
+        var Vdolarkuru = document.getElementById("dolarkuru");
+        var Vtelefonfiyati = document.getElementById("telefonfiyati");
+
+
+        function vergihesapla(){
+            var tlfiyat = Vdolarkuru.value*Vtelefonfiyati.value;
+            Vvergisizfiyat.innerHTML= Number((Vdolarkuru.value*Vtelefonfiyati.value).toFixed(2));
+            var bakanlik = (tlfiyat/100)*1 ;
+            Vkulturbakanlıgıpayi.innerHTML= Number(((tlfiyat/100)*1).toFixed(2)) ;
+            var trt = (tlfiyat/100)*10 ;
+            Vtrtbandrolucreti.innerHTML= Number(trt.toFixed(2));
+            var otv = (Number(tlfiyat)+Number(trt)+Number(bakanlik)) * 40 / 100;
+            Votvpayi.innerHTML= Number(otv.toFixed(2));
+            var kdv = (Number(tlfiyat)+Number(trt)+Number(bakanlik)+Number(otv))*18/100 ;
+            Vkdvpayi.innerHTML= Number(kdv.toFixed(2));
+            var toplamvrg = Number(otv)+Number(kdv)+Number(trt)+Number(bakanlik);
+            Vtoplamvergi.innerHTML= Number(toplamvrg.toFixed(2));
+            var toplamsatisf = Number(tlfiyat) + Number(toplamvrg);           
+            Vsatisfiyati.innerHTML= Number(toplamsatisf.toFixed(2));
+        }
+
+        function ekranitemizle(){
+            Vdolarkuru.value = 0;
+            Vtelefonfiyati.value = Number("0");
+            Vvergisizfiyat.innerHTML = Number("0");
+            Vkulturbakanlıgıpayi.innerHTML = Number("0");
+            Vtrtbandrolucreti.innerHTML = Number("0");
+            Votvpayi.innerHTML = Number("0");
+            Vkdvpayi.innerHTML = Number("0");
+            Vsatisfiyati.innerHTML = Number("0");
+            Vtoplamvergi.innerHTML = Number("0");
+        }
+        
+    </script>
+</body>
+</html>
